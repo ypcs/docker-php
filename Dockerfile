@@ -1,27 +1,21 @@
-FROM ypcs/ubuntu:bionic
+FROM ypcs/php:latest
 
 ARG VCS_REF
 LABEL org.label-schema.vcs-ref=$VCS_REF
 
-ENV PHP_VERSION 7.2
+ENV WEBGRIND_VERSION 1.5.0
 
 RUN \
     /usr/local/sbin/docker-upgrade && \
     apt-get --assume-yes install \
-        msmtp-mta \
-        php-db \
-    	php${PHP_VERSION}-fpm && \
+        curl \
+        php${PHP_VERSION}-xdebug && \
     /usr/local/sbin/docker-cleanup
 
-RUN mkdir -p /docker-entrypoint-init.d
-COPY entrypoint.sh /entrypoint.sh
+RUN \
+    curl -fSL "https://github.com/jokkedk/webgrind/archive/v${WEBGRIND_VERSION}.tar.gz" -o /tmp/webgrind.tar.gz && \
+    mkdir -p /opt/webgrind
+    cd /opt/webgrind && \
+    tar -xzf /tmp/webgrind.tar.gz --strip-components=1 && \
+    rm -f /tmp/webgrind.tar.gz
 
-COPY configure-php.sh /usr/local/sbin/configure-php
-RUN /usr/local/sbin/configure-php
-
-RUN echo "Source: https://github.com/ypcs/docker-php\nBuild date: $(date --iso-8601=ns)" >/README
-
-EXPOSE 9000
-
-ENTRYPOINT ["/entrypoint.sh"]
-CMD ["sh", "-c", "php-fpm${PHP_VERSION}"]
