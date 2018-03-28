@@ -1,6 +1,13 @@
 #!/bin/sh
 set -e
 
+# Create symlink if using old directory structure
+if [ -d "/etc/php${PHP_VERSION}" ]
+then
+    mkdir -p /etc/php
+    ln -sf "/etc/php${PHP_VERSION}" "/etc/php/${PHP_VERSION}"
+fi
+
 cat > "/etc/php/${PHP_VERSION}/fpm/pool.d/zz-docker.conf" << EOF
 [global]
 error_log = /dev/stderr
@@ -12,12 +19,6 @@ catch_workers_output = yes
 EOF
 
 mkdir -p /run/php
-
-if [ -d "/etc/php${PHP_VERSION}" ]
-then
-    mkdir -p /etc/php
-    ln -sf "/etc/php${PHP_VERSION}" "/etc/php/${PHP_VERSION}"
-fi
 
 # Listen 9000/tcp
 sed -i "s/^listen = .*/listen = 9000/g" /etc/php/${PHP_VERSION}/fpm/pool.d/www.conf
