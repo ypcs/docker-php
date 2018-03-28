@@ -21,7 +21,5 @@ RUN /usr/local/sbin/configure-php
 
 RUN echo "Source: https://github.com/ypcs/docker-php\nBuild date: $(date --iso-8601=ns)" >/README
 
-EXPOSE 9000
-
 ENTRYPOINT ["/entrypoint.sh"]
 CMD ["sh", "-c", "php-fpm${PHP_VERSION}"]
