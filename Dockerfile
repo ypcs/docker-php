@@ -1,4 +1,4 @@
-FROM ypcs/debian:sid
+FROM ypcs/debian:buster
 
 ARG VCS_REF
 LABEL org.label-schema.vcs-ref=$VCS_REF
