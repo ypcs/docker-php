@@ -25,3 +25,9 @@ then
     ln -sf "/usr/sbin/php${PHP_VERSION}-fpm" "/usr/sbin/php-fpm${PHP_VERSION}"
 fi
 
+if [ -d "/etc/php${PHP_VERSION}" ]
+then
+    mkdir -p /etc/php
+    ln -sf "/etc/php${PHP_VERSION}" "/etc/php/${PHP_VERSION}"
+fi
+
