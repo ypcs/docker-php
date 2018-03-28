@@ -14,7 +14,7 @@ RUN \
 
 RUN \
     curl -fSL "https://github.com/jokkedk/webgrind/archive/v${WEBGRIND_VERSION}.tar.gz" -o /tmp/webgrind.tar.gz && \
-    mkdir -p /opt/webgrind
+    mkdir -p /opt/webgrind && \
     cd /opt/webgrind && \
     tar -xzf /tmp/webgrind.tar.gz --strip-components=1 && \
     rm -f /tmp/webgrind.tar.gz
