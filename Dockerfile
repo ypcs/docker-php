@@ -6,6 +6,7 @@ LABEL org.label-schema.vcs-ref=$VCS_REF
 ENV PHP_VERSION 7.2
 
 RUN \
+    sed -i "s/main\$/main universe/g" /etc/apt/sources.list && \
     /usr/local/sbin/docker-upgrade && \
     apt-get --assume-yes install \
         msmtp-mta \
