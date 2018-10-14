@@ -7,12 +7,13 @@ ENV PHP_VERSION 7.2
 
 RUN \
     sed -i "s/main\$/main universe/g" /etc/apt/sources.list && \
-    /usr/local/sbin/docker-upgrade && \
+    /usr/lib/docker-helpers/apt-setup && \
+    /usr/lib/docker-helpers/apt-upgrade && \
     apt-get --assume-yes install \
         msmtp-mta \
         php-db \
     	php${PHP_VERSION}-fpm && \
-    /usr/local/sbin/docker-cleanup
+    /usr/lib/docker-helpers/apt-cleanup
 
 RUN mkdir -p /docker-entrypoint-init.d
 COPY entrypoint.sh /entrypoint.sh
