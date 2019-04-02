@@ -1,9 +1,9 @@
-FROM ypcs/ubuntu:bionic
+FROM ypcs/debian:buster
 
 ARG VCS_REF
 LABEL org.label-schema.vcs-ref=$VCS_REF
 
-ENV PHP_VERSION 7.2
+ENV PHP_VERSION 7.3
 
 RUN \
     sed -i "s/main\$/main universe/g" /etc/apt/sources.list && \
