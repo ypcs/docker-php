@@ -7,7 +7,6 @@ ENV PHP_VERSION 7.3
 
 RUN /usr/lib/docker-helpers/apt-setup && \
     /usr/lib/docker-helpers/apt-upgrade && \
-    sed -i "s/main\$/main universe/g" /etc/apt/sources.list && \
     apt-get --assume-yes install \
         msmtp-mta \
         php-db \
