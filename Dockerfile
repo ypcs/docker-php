@@ -5,13 +5,13 @@ LABEL org.label-schema.vcs-ref=$VCS_REF
 
 ENV PHP_VERSION 5
 
-RUN \
-    /usr/local/sbin/docker-upgrade && \
+RUN /usr/lib/docker-helpers/apt-setup && \
+    /usr/lib/docker-helpers/apt-upgrade && \
     apt-get --assume-yes install \
         msmtp-mta \
         php-db \
     	php${PHP_VERSION}-fpm && \
-    /usr/local/sbin/docker-cleanup
+    /usr/lib/docker-helpers/apt-cleanup
 
 RUN mkdir -p /docker-entrypoint-init.d
 COPY entrypoint.sh /entrypoint.sh
