@@ -9,7 +9,6 @@ RUN /usr/lib/docker-helpers/apt-setup && \
     /usr/lib/docker-helpers/apt-upgrade && \
     apt-get --assume-yes install \
         msmtp-mta \
-        php-db \
     	php${PHP_VERSION}-fpm && \
     /usr/lib/docker-helpers/apt-cleanup
 
