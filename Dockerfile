@@ -1,5 +1,6 @@
 FROM ypcs/debian:bullseye
 
+ARG APT_PROXY
 ARG VCS_REF
 LABEL org.label-schema.vcs-ref=$VCS_REF
 
