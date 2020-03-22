@@ -1,4 +1,4 @@
-FROM ypcs/debian:bullseye
+FROM ypcs/ubuntu:eoan
 
 ARG APT_PROXY
 ARG VCS_REF
