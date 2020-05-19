@@ -1,10 +1,10 @@
-FROM ypcs/debian:buster
+FROM ypcs/debian:bullseye
 
 ARG APT_PROXY
 ARG VCS_REF
 LABEL org.label-schema.vcs-ref=$VCS_REF
 
-ENV PHP_VERSION 7.3
+ENV PHP_VERSION 7.4
 
 RUN /usr/lib/docker-helpers/apt-setup && \
     /usr/lib/docker-helpers/apt-upgrade && \
